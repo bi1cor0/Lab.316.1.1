@@ -53,5 +53,10 @@ subMenuEl.classList.add(`flex-around`);
 
 //Part 5
 //adding interactivity
-var topMenuLinks = document.body.getElementsByTagName(`a`)
-console.log(topMenuLinks)
+var topMenuLinks = topMenuEl.getElementsByTagName(`a`)
+function topGhost(event) {
+  event.preventDefault();
+  console.log(`hi`)
+}
+
+topMenuEl.addEventListener('hover', topGhost)
