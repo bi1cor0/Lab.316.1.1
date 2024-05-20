@@ -38,7 +38,7 @@ menuLinks.forEach((Link) => {
     newLink.setAttribute(`href`, Link.href)
     newLink.textContent = Link.text
     topMenuEl.appendChild(newLink)
-})
+}) 
 
 //Part 4
 //Set up sub toolbar menu for a dropdown menu
@@ -54,7 +54,7 @@ subMenuEl.classList.add(`flex-around`);
 //Part 5
 //adding interactivity
 var topMenuLinks = topMenuEl.getElementsByTagName(`a`)
-
+console.log(topMenuLinks)
 function topGhost(event) {
   event.preventDefault();
   if (event.target.tagName.toLowerCase() === `a`)
@@ -65,11 +65,12 @@ function topGhost(event) {
 
       } else{ 
         event.target.classList.add(`active`);
-        console.log(event.target)
+        console.log(event.target.contains)
       }
     } else {
         return;
     }
+    topMenuLinks.forEach((btn) => {console.log(btn)})
   
 }
 
