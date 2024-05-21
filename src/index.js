@@ -100,4 +100,17 @@ for(let Link of subArr){
   return subMenuEl;
 }
 
+function subghost(event) {
+  event.preventDefault();
+  if (event.target.tagName.toLowerCase() !== `a`){
+    return;
+  subMenuEl.style.top = 0;
+  }
+  for(let btn = 0; btn < topMenuLinks.length; btn++){
+    topMenuLinks[btn].classList.remove(`active`);
+    } 
+
+}
+
+subMenuEl.addEventListener('click', subghost)
 topMenuEl.addEventListener('click', topGhost)
