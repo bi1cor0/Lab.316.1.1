@@ -69,7 +69,7 @@ function topGhost(event) {
         return;
     }
 
-    for(let btn = 0; btn < topMenuLinks.length; btn++){
+    for(let btn = 0; btn < topMenuLinks.length; btn++){ //created for loop to loop through the top menu links to search for everything but the active class target.
       if(topMenuLinks[btn] !== event.target){
         topMenuLinks[btn].classList.remove(`active`);
         subMenuEl.innerHTML = ``;  
@@ -78,18 +78,18 @@ function topGhost(event) {
 
  //Part 6
  //still within the function but adding loops and more if statements to populate the dropdown menu.   
- if(event.target.classList.contains(`active`)){ 
+    if(event.target.classList.contains(`active`)){ 
   
-  for(c of menuLinks){//nested for loop for when the event target has an `active` tag. 
-    if(c.text === event.target.textContent){ //if the iterator goes through the menuLinks array and references the same text as the event target, go forward.
-      if(c.subLinks){ //and if that portion of the array has a sublinks menu, keep going forward.
-        subMenuEl.style.top = `100%`;
-        buildSubmenu(c.subLinks)} //call helper function to generate new sublinks.
-        else{subMenuEl.style.top = `0%`;} //hide submenu
+    for(c of menuLinks){//nested for loop for when the event target has an `active` tag. 
+      if(c.text === event.target.textContent){ //if the iterator goes through the menuLinks array and references the same text as the event target, go forward.
+        if(c.subLinks){ //and if that portion of the array has a sublinks menu, keep going forward.
+          subMenuEl.style.top = `100%`;
+          buildSubmenu(c.subLinks)} //call helper function to generate new sublinks.
+          else{subMenuEl.style.top = `0%`;} //hide submenu
+      }
     }
+  } else{subMenuEl.style.top = `0%`;}
   }
- } else{subMenuEl.style.top = `0%`;}
-}
 //Building the submenu by generating new links and references every time user clicks on a link in the toolbar. 
 function buildSubmenu(subArr) {
 for(let Link of subArr){
@@ -112,7 +112,6 @@ function subghost(event) {
     } 
     
     mainEl[0].innerHTML = `<h1>${event.target.textContent}</h>`
-
   }
 
 subMenuEl.addEventListener('click', subghost)
