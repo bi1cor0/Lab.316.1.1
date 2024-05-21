@@ -60,11 +60,11 @@ function topGhost(event) {
     {
       if(event.target.classList.contains(`active`)){
         event.target.classList.remove(`active`);
-        console.log(event.target)
+        //console.log(event.target)
 
       } else{ 
         event.target.classList.add(`active`);
-        console.log(event.target)
+        //console.log(event.target)
       }
     } else {
         return;
@@ -72,11 +72,10 @@ function topGhost(event) {
     console.log(topMenuLinks)
 
     for(let btn = 0; btn < topMenuLinks.length; btn++){
-      event.target.classList.remove(`active`);
-      
-    }
-    console.log(event.target.classList.contains(`active`))
-
+      if(topMenuLinks[btn] !== event.target){
+        topMenuLinks[btn].classList.remove(`active`);  
+      } 
+    } 
 }
 
 topMenuEl.addEventListener('click', topGhost)
