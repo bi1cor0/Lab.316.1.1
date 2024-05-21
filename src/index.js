@@ -56,14 +56,14 @@ subMenuEl.classList.add(`flex-around`);
 var topMenuLinks = topMenuEl.getElementsByTagName(`a`)
 function topGhost(event) {
   event.preventDefault();
-  if (event.target.tagName.toLowerCase() === `a`)
+  if (event.target.tagName.toLowerCase() === `a`) //if the event target is `a`
     {
-      if(event.target.classList.contains(`active`)){
-        event.target.classList.remove(`active`);
-        subMenuEl.innerHTML = ``;
+      if(event.target.classList.contains(`active`)){ //and the target class contains `active`
+        event.target.classList.remove(`active`); //remove the active class
+        subMenuEl.innerHTML = ``; //clearing the subMenuEl var since it should be full of values from the function: buildSubmenu.
 
       } else{ 
-        event.target.classList.add(`active`);
+        event.target.classList.add(`active`); //otherwise, add the active class.
       }
     } else {
         return;
@@ -78,18 +78,19 @@ function topGhost(event) {
 
  //Part 6
  //still within the function but adding loops and more if statements to populate the dropdown menu.   
- if(event.target.classList.contains(`active`)){
+ if(event.target.classList.contains(`active`)){ 
   
-  for(c of menuLinks){
-    if(c.text === event.target.textContent){
-      if(c.subLinks){
+  for(c of menuLinks){//nested for loop for when the event target has an `active` tag. 
+    if(c.text === event.target.textContent){ //if the iterator goes through the menuLinks array and references the same text as the event target, go forward.
+      if(c.subLinks){ //and if that portion of the array has a sublinks menu, keep going forward.
         subMenuEl.style.top = `100%`;
-        buildSubmenu(c.subLinks)}
-        else{subMenuEl.style.top = `0%`;}
+        buildSubmenu(c.subLinks)} //call helper function to generate new sublinks.
+        else{subMenuEl.style.top = `0%`;} //hide submenu
     }
   }
  } else{subMenuEl.style.top = `0%`;}
 }
+//Building the submenu by generating new links and references every time user clicks on a link in the toolbar. 
 function buildSubmenu(subArr) {
 for(let Link of subArr){
   let newsubLink = document.createElement(`a`)
@@ -99,7 +100,7 @@ for(let Link of subArr){
 }
   return subMenuEl;
 }
-
+//Created another event listener helper function as per the instructions of Part 5 of the lab (part 6 in the code)
 function subghost(event) {
   event.preventDefault();
   if (event.target.tagName.toLowerCase() !== `a`){
@@ -109,8 +110,10 @@ function subghost(event) {
   for(let btn = 0; btn < topMenuLinks.length; btn++){
     topMenuLinks[btn].classList.remove(`active`);
     } 
+    
+    mainEl[0].innerHTML = `<h1>${event.target.textContent}</h>`
 
-}
+  }
 
 subMenuEl.addEventListener('click', subghost)
 topMenuEl.addEventListener('click', topGhost)
