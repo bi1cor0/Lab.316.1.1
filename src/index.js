@@ -60,11 +60,10 @@ function topGhost(event) {
     {
       if(event.target.classList.contains(`active`)){
         event.target.classList.remove(`active`);
-        //console.log(event.target)
+        subMenuEl.innerHTML = ``;
 
       } else{ 
         event.target.classList.add(`active`);
-        //console.log(event.target)
       }
     } else {
         return;
@@ -72,10 +71,10 @@ function topGhost(event) {
 
     for(let btn = 0; btn < topMenuLinks.length; btn++){
       if(topMenuLinks[btn] !== event.target){
-        topMenuLinks[btn].classList.remove(`active`);  
+        topMenuLinks[btn].classList.remove(`active`);
+        subMenuEl.innerHTML = ``;  
       } 
     } 
-    console.log(topMenuLinks)
 
  //Part 6
  //still within the function but adding loops and more if statements to populate the dropdown menu.   
@@ -84,11 +83,21 @@ function topGhost(event) {
   for(c of menuLinks){
     if(c.text === event.target.textContent){
       if(c.subLinks){
-        subMenuEl.style.top = `100%`;}
+        subMenuEl.style.top = `100%`;
+        buildSubmenu(c.subLinks)}
         else{subMenuEl.style.top = `0%`;}
     }
   }
  } else{subMenuEl.style.top = `0%`;}
+}
+function buildSubmenu(subArr) {
+for(let Link of subArr){
+  let newsubLink = document.createElement(`a`)
+  newsubLink.setAttribute(`href`, Link.href)
+  newsubLink.textContent = Link.text
+  subMenuEl.appendChild(newsubLink)
+}
+  return subMenuEl;
 }
 
 topMenuEl.addEventListener('click', topGhost)
