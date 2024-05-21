@@ -69,13 +69,26 @@ function topGhost(event) {
     } else {
         return;
     }
-    console.log(topMenuLinks)
 
     for(let btn = 0; btn < topMenuLinks.length; btn++){
       if(topMenuLinks[btn] !== event.target){
         topMenuLinks[btn].classList.remove(`active`);  
       } 
     } 
+    console.log(topMenuLinks)
+
+ //Part 6
+ //still within the function but adding loops and more if statements to populate the dropdown menu.   
+ if(event.target.classList.contains(`active`)){
+  
+  for(c of menuLinks){
+    if(c.text === event.target.textContent){
+      if(c.subLinks){
+        subMenuEl.style.top = `100%`;}
+        else{subMenuEl.style.top = `0%`;}
+    }
+  }
+ } else{subMenuEl.style.top = `0%`;}
 }
 
 topMenuEl.addEventListener('click', topGhost)
